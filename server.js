@@ -6,41 +6,36 @@ const path = require('path');
 // if port is any route or 3001
 const PORT = process.env.PORT || 3001; 
 
-// instantiate the server
+// start the server
 const app = express(); 
 
-// parse incoming string or array data
+
 app.use(express.urlencoded ( { extended: true }));
-// parse incoming JSON data
+
 app.use(express.json());
-// middleware for public files
+//staticly set public folder
 app.use(express.static('public')); 
 
-const apiRoutes = require('./routes/apiRoutes.js');
-const htmlRoutes = require('./routes/htmlRoutes.js');
 
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
-
-// request data
+// request data from notes
 const { notes } = require('./db/db.json');
 
-// function handling taking the data from req.body and adding it to our animals.json file
-function createNewNote (body, notesArray) {
+// function taking the data from req.body 
+function createNote (body, notesArray) {
     const note = body; 
     notesArray.push(note); 
 
-    // path to write file 
+
     fs.writeFileSync(
-        path.join(__dirname, './data/db.json'),
+        path.join(__dirname, './db/db.json'),
         JSON.stringify({ notes : notesArray }, null, 2)
     );
-    // return finished code to post route for response
+    
     return note; 
 };
 
 // validating data
-function validateNote (note) {
+function noteValidate (note) {
     if (!note.title || typeof note.title !== 'string') {
         return false; 
     }
@@ -55,18 +50,18 @@ app.get('/api/notes', (req, res) => {
     res.json(notes); 
 });
 
-// route to server to accept data to be used or stored server-side
+
 app.post('/api/notes', (req, res) => {
-    // set id based on what the next index of the array will be 
+    // set id 
     req.body.id = notes.length.toString(); 
 
-    // if any data in req.body is incorrect, send error
-    if (!validateNote(req.body)) {
+    
+    if (!noteValidate(req.body)) {
         res.status(400).send('The note is not properly formatted.'); 
     
     } else {
-        // add note to json file and animals array in this function 
-        const note = createNewNote(req.body, notes); 
+    
+        const note = createNote(req.body, notes); 
 
         res.json(note);
     }
@@ -78,11 +73,11 @@ app.delete('/api/notes/:id', (req, res) => {
     let note;
 
     notes.map((element, index) => {
-      if (element.id == id){
+        if (element.id == id){
         note = element
         notes.splice(index, 1)
         return res.json(note);
-      } 
+        } 
     
     })
 });
