@@ -6,6 +6,15 @@ const path = require('path');
 // if port is any route or 3001
 const PORT = process.env.PORT || 3001; 
 
+
+//to do: get routes working
+// const apiRoutes = require('./routes/apiRoutes/index');
+// const htmlRoutes = require('./routes/htmlRoutes/index');
+
+// Use apiRoutes
+// app.use('/api/notes', apiRoutes);
+// app.use('/', htmlRoutes);
+
 // start the server
 const app = express(); 
 
@@ -15,6 +24,8 @@ app.use(express.urlencoded ( { extended: true }));
 app.use(express.json());
 //staticly set public folder
 app.use(express.static('public')); 
+
+// 
 
 
 // request data from notes
@@ -45,6 +56,8 @@ function noteValidate (note) {
     return true;   
 };
 
+//API routes, gets, posts, and deletes 
+
 // route GET 
 app.get('/api/notes', (req, res) => {
     res.json(notes); 
@@ -57,7 +70,7 @@ app.post('/api/notes', (req, res) => {
 
     
     if (!noteValidate(req.body)) {
-        res.status(400).send('The note is not properly formatted.'); 
+        res.status(400).send('Please format this note.'); 
     
     } else {
     
@@ -82,17 +95,23 @@ app.delete('/api/notes/:id', (req, res) => {
     })
 });
 
+//html routes
 // route to index.html 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'./public/index.html'));
+    res.sendFile(path.join(__dirname,'../public/index.html'));
 }); 
 
 // route to notes.html 
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname,'./public/notes.html'));
+    res.sendFile(path.join(__dirname,'../public/notes.html'));
 }); 
 
+
+
+
+
+
 // chain listen() method onto our servers
-app.listen(PORT, () => {
+app.listen(PORT, () => { 
     console.log(`API server now on port ${PORT}!`);
 });
