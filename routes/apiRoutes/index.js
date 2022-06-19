@@ -6,7 +6,7 @@ const router = require('express').Router();
 
 // request data from notes
 const { notes } = require('../../db/db.json');
-const { createNote, noteValidate } = require('../../lib/notes');
+const { filterById, createNewNote, validateNotes } = require('../../lib/notes');
 
 
 // route GET 
@@ -20,12 +20,12 @@ router.post('/api/notes', (req, res) => {
     req.body.id = notes.length.toString(); 
 
     
-    if (!noteValidate(req.body)) {
+    if (!validateNotes(req.body)) {
         res.status(400).send('Please format this note.'); 
     
     } else {
     
-        const note = createNote(req.body, notes); 
+        const note = createNewNote(req.body, notes); 
 
         res.json(note);
     }
