@@ -49,7 +49,7 @@
       This project is coverted under the MIT License
 
   ## GitHub Repo
-https://github.com/jleitz27/team-profile-generator 
+  https://github.com/jleitz27/note-taker 
 
   ## Link to deployed project
   https://whispering-refuge-76567.herokuapp.com/ 
