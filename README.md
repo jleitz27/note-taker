@@ -55,7 +55,7 @@ https://github.com/jleitz27/team-profile-generator
   https://whispering-refuge-76567.herokuapp.com/ 
 
 <p align="center">
-  <img src="./src/images/site.png" width="350"
+  <img src="./lib/images/site.gif" width="350"
 
 </p>
   
