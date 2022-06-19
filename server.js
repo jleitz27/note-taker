@@ -5,18 +5,19 @@ const path = require('path');
 
 // if port is any route or 3001
 const PORT = process.env.PORT || 3001; 
+// start the server
+const app = express(); 
 
 
-//to do: get routes working
+// //to do: get routes working
 // const apiRoutes = require('./routes/apiRoutes/index');
 // const htmlRoutes = require('./routes/htmlRoutes/index');
 
-// Use apiRoutes
+// // Use apiRoutes
 // app.use('/api/notes', apiRoutes);
 // app.use('/', htmlRoutes);
 
-// start the server
-const app = express(); 
+
 
 
 app.use(express.urlencoded ( { extended: true }));
@@ -25,7 +26,7 @@ app.use(express.json());
 //staticly set public folder
 app.use(express.static('public')); 
 
-// 
+
 
 
 // request data from notes
@@ -98,12 +99,12 @@ app.delete('/api/notes/:id', (req, res) => {
 //html routes
 // route to index.html 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'../public/index.html'));
+    res.sendFile(path.join(__dirname,'./public/index.html'));
 }); 
 
 // route to notes.html 
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname,'../public/notes.html'));
+    res.sendFile(path.join(__dirname,'./public/notes.html'));
 }); 
 
 
@@ -115,4 +116,3 @@ app.get('/notes', (req, res) => {
 app.listen(PORT, () => { 
     console.log(`API server now on port ${PORT}!`);
 });
-
