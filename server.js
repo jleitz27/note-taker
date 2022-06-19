@@ -1,7 +1,7 @@
 // requiring express 
 const express = require('express');
-// const fs = require('fs');
-// const path = require('path'); 
+const fs = require('fs');
+const path = require('path'); 
 
 // if port is any route or 3001
 const PORT = process.env.PORT || 3001; 
