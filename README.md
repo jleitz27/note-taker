@@ -9,7 +9,7 @@
   - [Installation](#installation)
   - [License](#license)
   - [GitHub Repo](#github-repo)
-  - [Link to video for project](#link-to-video-for-project)
+  - [Link to deployed project](#link-to-deployed-project)
   - [Questions](#questions)
 
 ## User Story
@@ -51,8 +51,8 @@
   ## GitHub Repo
 https://github.com/jleitz27/team-profile-generator 
 
-  ## Link to video for project
-  https://www.screencast.com/t/kIeb1akYKnt
+  ## Link to deployed project
+  https://whispering-refuge-76567.herokuapp.com/ 
 
 <p align="center">
   <img src="./src/images/site.png" width="350"
