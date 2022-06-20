@@ -3,7 +3,17 @@
     {
       "title": "Test Title",
       "text": "Test text",
+      "id": "0"
+    },
+    {
+      "title": "howdy",
+      "text": "this is a test for the ids",
       "id": "1"
+    },
+    {
+      "title": "hi",
+      "text": "this is another test",
+      "id": "2"
     }
   ]
 }
